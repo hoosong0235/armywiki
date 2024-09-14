@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "974788258846",
+    "project_id": "armywiki-b1aa7",
+    "storage_bucket": "armywiki-b1aa7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:974788258846:android:1356362217c3bfd9f6520f",
+        "android_client_info": {
+          "package_name": "com.armywiki.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8V_mzwfSk2Rjp6xHdgjDqq5zGhww8hDA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
