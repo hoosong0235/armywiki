@@ -41,7 +41,7 @@
 
 ## 머리말
 
-![product-screenshot]
+[![armywiki Screen Shot][product-screenshot]](https://youtu.be/2rbYi0seG9Q?si=1sc6Hthl_OeOz4bz)
 
 머리말
 
@@ -66,8 +66,6 @@
 
 
 ## 서비스 기능 소개
-
-![](readmeAssets/flowChart.png)
 
 ### 1. 서비스 기능 소개
 
@@ -121,7 +119,7 @@ Project Link: [https://github.com/hoosong0235/armywiki](https://github.com/hooso
 [issues-url]: https://github.com/hoosong0235/armywiki/issues
 [license-shield]: https://img.shields.io/github/license/hoosong0235/armywiki.svg?style=for-the-badge
 [license-url]: https://github.com/hoosong0235/armywiki/blob/master/LICENSE.txt
-[product-screenshot]: readmeAssets/thumbnail.png
+[product-screenshot]: readmeAssets/youtube.png
 [Github.js]: https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white
 [Github-url]: https://github.com/
 [Dart.js]: https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white
