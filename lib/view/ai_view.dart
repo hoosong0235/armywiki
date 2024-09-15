@@ -33,7 +33,7 @@ class _AiViewState extends State<AiView> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () => Get.back(),
-          icon: Icon(
+          icon: const Icon(
             Icons.close,
           ),
         ),
@@ -43,7 +43,7 @@ class _AiViewState extends State<AiView> {
         ),
         foregroundColor: Colors.white,
         flexibleSpace: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: GeminiGradient,
           ),
         ),
@@ -204,7 +204,7 @@ class _AiChatViewState extends State<AiChatView> {
                             setState(() {});
                           }
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.keyboard_return,
                         ),
                       ),
@@ -225,7 +225,7 @@ class _AiChatViewState extends State<AiChatView> {
       children: [
         Container(
           padding: chatEdgeInsets,
-          constraints: BoxConstraints(
+          constraints: const BoxConstraints(
             maxWidth: 288,
           ),
           decoration: BoxDecoration(

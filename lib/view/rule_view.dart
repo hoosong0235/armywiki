@@ -44,11 +44,11 @@ class _RuleViewState extends State<RuleView> {
           return ListView(
             children: [
               Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient: ROKAGradient,
                 ),
                 child: Padding(
-                  padding: EdgeInsets.symmetric(
+                  padding: const EdgeInsets.symmetric(
                     horizontal: 16,
                     vertical: 64,
                   ),
@@ -73,7 +73,7 @@ class _RuleViewState extends State<RuleView> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(
+                padding: const EdgeInsets.all(
                   16,
                 ),
                 child: Column(
@@ -84,7 +84,7 @@ class _RuleViewState extends State<RuleView> {
                       trailing: [
                         IconButton(
                           onPressed: () {},
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.search,
                           ),
                         ),

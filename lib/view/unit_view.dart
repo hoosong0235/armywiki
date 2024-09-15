@@ -60,7 +60,7 @@ class _UnitViewState extends State<UnitView> with TickerProviderStateMixin {
           ),
           TabBar.secondary(
             controller: tabController,
-            tabs: [
+            tabs: const [
               Tab(
                 text: "규정",
               ),
@@ -79,8 +79,8 @@ class _UnitViewState extends State<UnitView> with TickerProviderStateMixin {
                 UnitRuleView(
                   widget.unitModel,
                 ),
-                UnitReviewView(),
-                UnitArticleView(),
+                const UnitReviewView(),
+                const UnitArticleView(),
               ],
             ),
           ),

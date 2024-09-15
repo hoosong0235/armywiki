@@ -46,14 +46,14 @@ class _LoginViewState extends State<LoginView> {
           SvgPicture.asset(
             "assets/armywikiLarge.svg",
           ),
-          SizedBox(height: 48),
+          const SizedBox(height: 48),
           TextField(
             onChanged: (value) => email = value,
             decoration: InputDecoration(
               labelText: '나라사랑포털 이메일',
               hintText: '@narasarang.or.kr',
               errorText: isEmailValid ? null : '나라사랑포털 이메일을 입력해주세요.',
-              border: OutlineInputBorder(),
+              border: const OutlineInputBorder(),
             ),
           ),
           buildGap(),
@@ -63,7 +63,7 @@ class _LoginViewState extends State<LoginView> {
             decoration: InputDecoration(
               labelText: '비밀번호',
               errorText: isPasswordValid ? null : '비밀번호를 입력해주세요.',
-              border: OutlineInputBorder(),
+              border: const OutlineInputBorder(),
             ),
           ),
           buildGap(),
@@ -87,7 +87,7 @@ class _LoginViewState extends State<LoginView> {
                       setState(() {});
                     }
                   },
-                  child: Text(
+                  child: const Text(
                     "로그인",
                   ),
                 ),
@@ -106,7 +106,7 @@ class _LoginViewState extends State<LoginView> {
                 onPressed: () => widget.stateController.updateSelectedIndex(
                   1,
                 ),
-                child: Text(
+                child: const Text(
                   "회원가입",
                 ),
               ),

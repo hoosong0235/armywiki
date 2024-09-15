@@ -22,7 +22,7 @@ class _UnitRuleViewState extends State<UnitRuleView> {
     BuildContext context,
   ) {
     return Padding(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         horizontal: 16,
       ),
       child: FutureBuilder(
@@ -94,7 +94,7 @@ class _UnitRuleViewState extends State<UnitRuleView> {
             ),
             TextButton(
               onPressed: () {},
-              child: Text(
+              child: const Text(
                 "편집",
               ),
             ),

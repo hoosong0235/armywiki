@@ -24,6 +24,7 @@ class FirebaseAuthController {
         "password": password,
         "enlist": enlist,
         "unit_id": unitId,
+        "unit_ids": [],
       };
 
       db
@@ -37,28 +38,14 @@ class FirebaseAuthController {
             user,
           )
           .onError(
-            (e, _) => print(
-              "Error writing document: $e",
-            ),
+            (e, _) {},
           );
-      ;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        print(
-          'The password provided is too weak.',
-        );
-      } else if (e.code == 'email-already-in-use') {
-        print(
-          'The account already exists for that email.',
-        );
-      }
+      } else if (e.code == 'email-already-in-use') {}
 
       return false;
     } catch (e) {
-      print(
-        e,
-      );
-
       return false;
     }
 
@@ -70,27 +57,17 @@ class FirebaseAuthController {
     String password,
   ) async {
     try {
+      // ignore: unused_local_variable
       final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        print(
-          'No user found for that email.',
-        );
-      } else if (e.code == 'wrong-password') {
-        print(
-          'Wrong password provided for that user.',
-        );
-      }
+      } else if (e.code == 'wrong-password') {}
 
       return false;
     } catch (e) {
-      print(
-        e,
-      );
-
       return false;
     }
 
@@ -101,10 +78,6 @@ class FirebaseAuthController {
     try {
       await FirebaseAuth.instance.signOut();
     } catch (e) {
-      print(
-        e,
-      );
-
       return false;
     }
 

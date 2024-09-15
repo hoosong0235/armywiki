@@ -35,8 +35,8 @@ class _MainViewState extends State<MainView> {
       ),
       backgroundColor: Colors.white,
       body: [
-        ArmyWikiView(),
-        RuleView(),
+        const ArmyWikiView(),
+        const RuleView(),
         GetBuilder<StateController>(
           init: StateController(),
           builder: (StateController stateController) => [
@@ -53,7 +53,7 @@ class _MainViewState extends State<MainView> {
         ),
       ][_selectedIndex],
       bottomNavigationBar: NavigationBar(
-        destinations: [
+        destinations: const [
           NavigationDestination(
             icon: Icon(
               CupertinoIcons.globe,

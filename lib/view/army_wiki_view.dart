@@ -34,14 +34,14 @@ class _ArmyWikiViewState extends State<ArmyWikiView> {
             trailing: [
               IconButton(
                 onPressed: () {},
-                icon: Icon(
+                icon: const Icon(
                   Icons.search,
                 ),
               ),
             ],
           ),
           buildGap(),
-                    SizedBox(
+          SizedBox(
             height: 56,
             child: Row(
               children: [

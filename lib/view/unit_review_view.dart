@@ -22,7 +22,7 @@ class _UnitReviewViewState extends State<UnitReviewView> {
     ).textTheme;
 
     return Padding(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         horizontal: 16,
       ),
       child: ListView(
@@ -33,7 +33,7 @@ class _UnitReviewViewState extends State<UnitReviewView> {
             trailing: [
               IconButton(
                 onPressed: () {},
-                icon: Icon(
+                icon: const Icon(
                   Icons.search,
                 ),
               ),
@@ -118,7 +118,7 @@ class _UnitReviewViewState extends State<UnitReviewView> {
                       (
                         index,
                       ) =>
-                          Icon(
+                          const Icon(
                         Icons.star,
                         color: Star,
                       ),
@@ -128,7 +128,7 @@ class _UnitReviewViewState extends State<UnitReviewView> {
                       (
                         index,
                       ) =>
-                          Icon(
+                          const Icon(
                         Icons.star_outline,
                         color: Star,
                       ),
@@ -141,7 +141,7 @@ class _UnitReviewViewState extends State<UnitReviewView> {
                 ),
               ),
               _buildChip(
-                Icon(
+                const Icon(
                   Icons.today,
                 ),
                 Text(
@@ -169,7 +169,7 @@ class _UnitReviewViewState extends State<UnitReviewView> {
               _buildChip(
                 IconButton(
                   onPressed: () {},
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.thumb_up,
                   ),
                 ),
@@ -181,7 +181,7 @@ class _UnitReviewViewState extends State<UnitReviewView> {
               _buildChip(
                 IconButton(
                   onPressed: () {},
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.thumb_down_outlined,
                   ),
                 ),
@@ -206,7 +206,7 @@ class _UnitReviewViewState extends State<UnitReviewView> {
       child: Row(
         children: [
           leading,
-          SizedBox(
+          const SizedBox(
             width: 8,
           ),
           trailing,

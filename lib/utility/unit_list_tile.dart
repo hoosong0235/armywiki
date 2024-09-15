@@ -6,14 +6,14 @@ import 'package:armywiki/model/unit_model.dart';
 import 'package:armywiki/view/unit_view.dart';
 
 class UnitListTile extends StatefulWidget {
-  UnitListTile(
+  const UnitListTile(
     this.unitModel, {
     this.isLarge = false,
     super.key,
   });
 
   final UnitModel unitModel;
-  bool isLarge;
+  final bool isLarge;
 
   @override
   State<UnitListTile> createState() => _UnitListTileState();
@@ -55,7 +55,7 @@ class _UnitListTileState extends State<UnitListTile> {
                   );
                 });
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.bookmark,
               ),
             )
@@ -67,7 +67,7 @@ class _UnitListTileState extends State<UnitListTile> {
                   );
                 });
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.bookmark_outline,
               ),
             ),

@@ -49,7 +49,7 @@ class ArmyWikiApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: MainView(),
+      home: const MainView(),
     );
   }
 }

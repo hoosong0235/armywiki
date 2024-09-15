@@ -22,7 +22,7 @@ class _UnitArticleViewState extends State<UnitArticleView> {
     ).textTheme;
 
     return Padding(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         horizontal: 16,
       ),
       child: ListView(
@@ -33,7 +33,7 @@ class _UnitArticleViewState extends State<UnitArticleView> {
             trailing: [
               IconButton(
                 onPressed: () {},
-                icon: Icon(
+                icon: const Icon(
                   Icons.search,
                 ),
               ),
@@ -111,7 +111,7 @@ class _UnitArticleViewState extends State<UnitArticleView> {
           Row(
             children: [
               _buildChip(
-                Icon(
+                const Icon(
                   CupertinoIcons.eye,
                 ),
                 Text(
@@ -120,7 +120,7 @@ class _UnitArticleViewState extends State<UnitArticleView> {
                 ),
               ),
               _buildChip(
-                Icon(
+                const Icon(
                   Icons.today,
                 ),
                 Text(
@@ -148,7 +148,7 @@ class _UnitArticleViewState extends State<UnitArticleView> {
               _buildChip(
                 IconButton(
                   onPressed: () {},
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.thumb_up,
                   ),
                 ),
@@ -160,7 +160,7 @@ class _UnitArticleViewState extends State<UnitArticleView> {
               _buildChip(
                 IconButton(
                   onPressed: () {},
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.thumb_down_outlined,
                   ),
                 ),
@@ -172,7 +172,7 @@ class _UnitArticleViewState extends State<UnitArticleView> {
               _buildChip(
                 IconButton(
                   onPressed: () {},
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.comment_outlined,
                   ),
                 ),
@@ -197,7 +197,7 @@ class _UnitArticleViewState extends State<UnitArticleView> {
       child: Row(
         children: [
           leading,
-          SizedBox(
+          const SizedBox(
             width: 8,
           ),
           trailing,

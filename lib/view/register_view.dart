@@ -74,7 +74,7 @@ class _RegisterViewState extends State<RegisterView> {
                   labelText: '이름',
                   hintText: '홍길동',
                   errorText: isNameValid ? null : '이름을 입력해주세요.',
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                 ),
               ),
               buildGap(),
@@ -84,7 +84,7 @@ class _RegisterViewState extends State<RegisterView> {
                   labelText: '나라사랑포털 이메일',
                   hintText: '@narasarang.or.kr',
                   errorText: isEmailValid ? null : '나라사랑포털 이메일을 입력해주세요.',
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                 ),
               ),
               buildGap(),
@@ -94,7 +94,7 @@ class _RegisterViewState extends State<RegisterView> {
                 decoration: InputDecoration(
                   labelText: '비밀번호',
                   errorText: isPasswordValid ? null : '비밀번호를 입력해주세요.',
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                 ),
               ),
               buildGap(),
@@ -104,7 +104,7 @@ class _RegisterViewState extends State<RegisterView> {
                 decoration: InputDecoration(
                   labelText: '비밀번호 확인',
                   errorText: isPasswordCheckValid ? null : '비밀번호가 일치하지 않습니다.',
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                 ),
               ),
               buildGap(),
@@ -133,7 +133,7 @@ class _RegisterViewState extends State<RegisterView> {
                 decoration: InputDecoration(
                   labelText: '입대일',
                   errorText: isEnlistValid ? null : '입대일을 선택해주세요.',
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                   suffixIcon: IconButton(
                     onPressed: () async {
                       enlist = await showDatePicker(
@@ -145,7 +145,7 @@ class _RegisterViewState extends State<RegisterView> {
 
                       setState(() {});
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.today,
                     ),
                   ),
@@ -160,7 +160,7 @@ class _RegisterViewState extends State<RegisterView> {
                     decoration: InputDecoration(
                       labelText: '부대코드',
                       errorText: isUnitIdValid ? null : '부대코드를 인증해주세요.',
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
                     ),
                   ),
                   Row(
@@ -195,7 +195,7 @@ class _RegisterViewState extends State<RegisterView> {
                             },
                           );
                         },
-                        child: Text(
+                        child: const Text(
                           "인증",
                         ),
                       ),
@@ -230,7 +230,7 @@ class _RegisterViewState extends State<RegisterView> {
                       setState(() {});
                     }
                   },
-                  child: Text(
+                  child: const Text(
                     "회원가입",
                   ),
                 ),
