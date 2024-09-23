@@ -2,7 +2,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class FirebaseAuthController {
+  static FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   static FirebaseFirestore db = FirebaseFirestore.instance;
+
+  static bool get emailVerified => firebaseAuth.currentUser!.emailVerified;
+
+  static Future<void> sendEmailVerification() async {
+    await firebaseAuth.currentUser!.sendEmailVerification();
+  }
+
+  static Future<void> reload() async {
+    await firebaseAuth.currentUser!.reload();
+  }
 
   static Future<bool> register(
     String name,
@@ -12,8 +23,7 @@ class FirebaseAuthController {
     String unitId,
   ) async {
     try {
-      final credential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      final credential = await firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -40,6 +50,8 @@ class FirebaseAuthController {
           .onError(
             (e, _) {},
           );
+
+      await sendEmailVerification();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
       } else if (e.code == 'email-already-in-use') {}
@@ -58,7 +70,7 @@ class FirebaseAuthController {
   ) async {
     try {
       // ignore: unused_local_variable
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+      final credential = await firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -76,7 +88,7 @@ class FirebaseAuthController {
 
   static Future<bool> logout() async {
     try {
-      await FirebaseAuth.instance.signOut();
+      await firebaseAuth.signOut();
     } catch (e) {
       return false;
     }

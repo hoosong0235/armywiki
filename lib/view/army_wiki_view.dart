@@ -14,6 +14,9 @@ class ArmyWikiView extends StatefulWidget {
 }
 
 class _ArmyWikiViewState extends State<ArmyWikiView> {
+  SearchController searchController = SearchController();
+  String keyword = "";
+
   @override
   Widget build(
     BuildContext context,
@@ -30,10 +33,17 @@ class _ArmyWikiViewState extends State<ArmyWikiView> {
         children: [
           buildGap(),
           SearchBar(
+            controller: searchController,
             hintText: "부대를 검색하세요.",
+            onChanged: (value) => keyword = value,
+            onSubmitted: (value) => setState(
+              () {},
+            ),
             trailing: [
               IconButton(
-                onPressed: () {},
+                onPressed: () => setState(
+                  () {},
+                ),
                 icon: const Icon(
                   Icons.search,
                 ),
@@ -41,21 +51,9 @@ class _ArmyWikiViewState extends State<ArmyWikiView> {
             ],
           ),
           buildGap(),
-          SizedBox(
-            height: 56,
-            child: Row(
-              children: [
-                Text(
-                  "전체 부대",
-                  style: textTheme.titleSmall,
-                ),
-              ],
-            ),
-          ),
-          buildGap(),
           FutureBuilder(
             future: SearchUnitsController.searchUnits(
-              "",
+              keyword,
             ),
             builder: (
               context,
@@ -74,8 +72,22 @@ class _ArmyWikiViewState extends State<ArmyWikiView> {
               } else if (snapshot.hasData) {
                 List<UnitModel> unitModels = snapshot.data!;
 
-                return Column(
-                  children: List.generate(
+                return Column(children: [
+                  SizedBox(
+                    height: 56,
+                    child: Row(
+                      children: [
+                        Text(
+                          keyword.isEmpty
+                              ? "전체 부대"
+                              : "${unitModels.length}개 검색 결과",
+                          style: textTheme.titleSmall,
+                        ),
+                      ],
+                    ),
+                  ),
+                  buildGap(),
+                  ...List.generate(
                     unitModels.length,
                     (
                       index,
@@ -84,7 +96,7 @@ class _ArmyWikiViewState extends State<ArmyWikiView> {
                       unitModels[index],
                     ),
                   ),
-                );
+                ]);
               } else {
                 return const Center(
                   child: Text(

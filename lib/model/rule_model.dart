@@ -95,6 +95,8 @@ class TitleModel {
   String get title => _title ?? "";
   String get body => _body ?? "";
 
+
+
   factory TitleModel.fromJson(
     Map<String, dynamic> json,
   ) =>

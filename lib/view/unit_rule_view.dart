@@ -1,3 +1,4 @@
+import 'package:armywiki/controller/update_unit_rule_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:armywiki/controller/get_unit_rule_controller.dart';
 import 'package:armywiki/model/unit_model.dart';
@@ -17,6 +18,25 @@ class UnitRuleView extends StatefulWidget {
 }
 
 class _UnitRuleViewState extends State<UnitRuleView> {
+  bool isUpdating = false;
+  bool isAdding = false;
+  bool isTitleValid = true;
+  bool isBodyValid = true;
+
+  TextEditingController titleTextEditingController = TextEditingController();
+  TextEditingController bodyTextEditingController = TextEditingController();
+  TitleModel updatingTitleModel = TitleModel(
+    null,
+    null,
+  );
+
+  bool validate() {
+    isTitleValid = titleTextEditingController.text.isNotEmpty;
+    isBodyValid = bodyTextEditingController.text.isNotEmpty;
+
+    return isTitleValid && isBodyValid;
+  }
+
   @override
   Widget build(
     BuildContext context,
@@ -52,12 +72,55 @@ class _UnitRuleViewState extends State<UnitRuleView> {
                 for (TitleModel titleModel in unitRuleModel.unitRules)
                   Column(
                     children: [
-                      _buildParagraph(
-                        titleModel,
-                      ),
+                      isUpdating && titleModel == updatingTitleModel
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                _buildUpdateParagraph(),
+                                buildSmallGap(),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: _buildCancelButton(),
+                                    ),
+                                    buildGap(),
+                                    Expanded(
+                                      child: _buildSaveButton(
+                                        unitRuleModel,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            )
+                          : _buildParagraph(
+                              titleModel,
+                            ),
                       buildLargeGap(),
                     ],
                   ),
+                isAdding
+                    ? Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          _buildUpdateParagraph(),
+                          buildSmallGap(),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: _buildCancelButton(),
+                              ),
+                              buildGap(),
+                              Expanded(
+                                child: _buildSaveButton(
+                                  unitRuleModel,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      )
+                    : _buildAddButton(),
                 buildGap(),
               ],
             );
@@ -69,6 +132,104 @@ class _UnitRuleViewState extends State<UnitRuleView> {
             );
           }
         },
+      ),
+    );
+  }
+
+  TextButton _buildUpdateButton(TitleModel titleModel) {
+    return TextButton(
+      onPressed: () {
+        setState(() {
+          updatingTitleModel = titleModel;
+          titleTextEditingController.text = updatingTitleModel.title;
+          bodyTextEditingController.text = updatingTitleModel.body;
+          isTitleValid = true;
+          isBodyValid = true;
+          isUpdating = true;
+          isAdding = false;
+        });
+      },
+      child: const Text(
+        "편집",
+      ),
+    );
+  }
+
+  FilledButton _buildAddButton() {
+    return FilledButton(
+      onPressed: () {
+        setState(() {
+          updatingTitleModel = TitleModel(
+            null,
+            null,
+          );
+          titleTextEditingController.text = updatingTitleModel.title;
+          bodyTextEditingController.text = updatingTitleModel.body;
+          isTitleValid = true;
+          isBodyValid = true;
+          isUpdating = false;
+          isAdding = true;
+        });
+      },
+      child: const Text(
+        "추가",
+      ),
+    );
+  }
+
+  OutlinedButton _buildCancelButton() {
+    return OutlinedButton(
+      onPressed: () {
+        setState(() {
+          isTitleValid = true;
+          isBodyValid = true;
+          isUpdating = false;
+          isAdding = false;
+        });
+      },
+      child: const Text(
+        "취소",
+      ),
+    );
+  }
+
+  FilledButton _buildSaveButton(UnitRuleModel unitRuleModel) {
+    return FilledButton(
+      onPressed: () async {
+        if (validate()) {
+          if (isUpdating) {
+            unitRuleModel.unitRules[unitRuleModel.unitRules.indexOf(
+              updatingTitleModel,
+            )] = TitleModel(
+              titleTextEditingController.text,
+              bodyTextEditingController.text,
+            );
+          }
+
+          if (isAdding) {
+            unitRuleModel.unitRules.add(
+              TitleModel(
+                titleTextEditingController.text,
+                bodyTextEditingController.text,
+              ),
+            );
+          }
+
+          await UpdateUnitRuleController.updateRule(
+            widget.unitModel.unitId,
+            unitRuleModel,
+          );
+
+          isTitleValid = true;
+          isBodyValid = true;
+          isUpdating = false;
+          isAdding = false;
+        }
+
+        setState(() {});
+      },
+      child: const Text(
+        "저장",
       ),
     );
   }
@@ -92,18 +253,46 @@ class _UnitRuleViewState extends State<UnitRuleView> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            TextButton(
-              onPressed: () {},
-              child: const Text(
-                "편집",
-              ),
-            ),
+            _buildUpdateButton(titleModel),
           ],
         ),
         buildSmallGap(),
         Text(
           titleModel.body,
           style: textTheme.bodySmall,
+        ),
+      ],
+    );
+  }
+
+  Column _buildUpdateParagraph() {
+    TextTheme textTheme = Theme.of(
+      context,
+    ).textTheme;
+
+    return Column(
+      children: [
+        TextField(
+          controller: titleTextEditingController,
+          style: textTheme.titleSmall?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
+          decoration: InputDecoration(
+            labelText: '제목',
+            errorText: isTitleValid ? null : '제목을 입력해주세요.',
+            border: const OutlineInputBorder(),
+          ),
+        ),
+        buildSmallGap(),
+        TextField(
+          controller: bodyTextEditingController,
+          style: textTheme.bodySmall,
+          decoration: InputDecoration(
+            labelText: '내용',
+            errorText: isBodyValid ? null : '내용을 입력해주세요.',
+            border: const OutlineInputBorder(),
+          ),
+          maxLines: 8,
         ),
       ],
     );
