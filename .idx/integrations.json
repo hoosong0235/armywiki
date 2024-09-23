@@ -1,3 +1,6 @@
 {
+  "firebase_hosting": {
+    "deploymentHostingUrl": "https://armywiki-b1aa7.web.app"
+  },
   "gemini_api": {}
 }

@@ -1,1 +1,34 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"armywiki-b1aa7","appId":"1:974788258846:android:1356362217c3bfd9f6520f","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"armywiki-b1aa7","configurations":{"android":"1:974788258846:android:1356362217c3bfd9f6520f","ios":"1:974788258846:ios:0ca313a973e9573bf6520f","web":"1:974788258846:web:cbc9d06322d2302bf6520f"}}}}}}
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "armywiki-b1aa7",
+          "appId": "1:974788258846:android:1356362217c3bfd9f6520f",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "armywiki-b1aa7",
+          "configurations": {
+            "android": "1:974788258846:android:1356362217c3bfd9f6520f",
+            "ios": "1:974788258846:ios:0ca313a973e9573bf6520f",
+            "web": "1:974788258846:web:cbc9d06322d2302bf6520f"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "source": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "frameworksBackend": {
+      "region": "asia-east1"
+    }
+  }
+}

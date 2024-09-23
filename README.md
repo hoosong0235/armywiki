@@ -19,7 +19,10 @@
   <p align="center">
     거대언어모델 기반 육군부대 백과사전
     <br />
-    <a href="https://github.com/hoosong0235/armywiki/releases/tag/v0.1.0"><strong>앱 다운로드 »</strong></a>
+    <br />
+    <a href="https://github.com/hoosong0235/armywiki/releases/tag/v1.0.0"><strong>앱 다운로드 »</strong></a>
+    <br />
+    <a href="https://armywiki-b1aa7.web.app/"><strong>웹사이트 바로가기 »</strong></a>
     <br />
     <br />
     <strong>2024 육군 빅데이터 분석 경연대회<br />앱/웹 서비스 부문 출품작</strong>
