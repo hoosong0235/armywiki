@@ -10,6 +10,7 @@ class CloudFirestoreController {
 
   static bool isFavorite(String unitId) =>
       userModel?.unitIds.contains(unitId) ?? false;
+  static bool isBelongedTo(String unitId) => userModel?.unitId == unitId;
 
   static Future<UserModel?> getUserNullable() async {
     try {

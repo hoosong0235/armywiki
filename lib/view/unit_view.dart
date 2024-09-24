@@ -1,3 +1,4 @@
+import 'package:armywiki/controller/cloud_firestore_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -86,26 +87,29 @@ class _UnitViewState extends State<UnitView> with TickerProviderStateMixin {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton.large(
-        onPressed: () => Get.to(
-          AiView(
-            widget.unitModel,
-          ),
-        ),
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(
-              28,
-            ),
-            gradient: GeminiGradientDiagonal,
-          ),
-          child: Center(
-            child: SvgPicture.asset(
-              "assets/gemini_logo.svg",
-            ),
-          ),
-        ),
-      ),
+      floatingActionButton:
+          CloudFirestoreController.isBelongedTo(widget.unitModel.unitId)
+              ? FloatingActionButton.large(
+                  onPressed: () => Get.to(
+                    AiView(
+                      widget.unitModel,
+                    ),
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                        28,
+                      ),
+                      gradient: GeminiGradientDiagonal,
+                    ),
+                    child: Center(
+                      child: SvgPicture.asset(
+                        "assets/gemini_logo.svg",
+                      ),
+                    ),
+                  ),
+                )
+              : null,
     );
   }
 }

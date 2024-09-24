@@ -1,3 +1,4 @@
+import 'package:armywiki/controller/cloud_firestore_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -5,6 +6,7 @@ class FirebaseAuthController {
   static FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   static FirebaseFirestore db = FirebaseFirestore.instance;
 
+  static bool get authenticated => firebaseAuth.currentUser != null;
   static bool get emailVerified => firebaseAuth.currentUser!.emailVerified;
 
   static Future<void> sendEmailVerification() async {
@@ -89,6 +91,8 @@ class FirebaseAuthController {
   static Future<bool> logout() async {
     try {
       await firebaseAuth.signOut();
+
+      CloudFirestoreController.userModel = null;
     } catch (e) {
       return false;
     }

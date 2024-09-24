@@ -1,9 +1,14 @@
+import 'dart:ui';
+
+import 'package:armywiki/controller/cloud_firestore_controller.dart';
+import 'package:armywiki/controller/firebase_auth_controller.dart';
 import 'package:armywiki/controller/update_unit_rule_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:armywiki/controller/get_unit_rule_controller.dart';
 import 'package:armywiki/model/unit_model.dart';
 import 'package:armywiki/model/unit_rule_model.dart';
 import 'package:armywiki/utility/widget.dart';
+import 'package:get/get.dart';
 
 class UnitRuleView extends StatefulWidget {
   const UnitRuleView(
@@ -64,64 +69,18 @@ class _UnitRuleViewState extends State<UnitRuleView> {
               ),
             );
           } else if (snapshot.hasData) {
-            UnitRuleModel unitRuleModel = snapshot.data!;
+            bool isBelongedTo = CloudFirestoreController.isBelongedTo(
+              widget.unitModel.unitId,
+            );
 
-            return ListView(
+            return Stack(
+              alignment: Alignment.center,
               children: [
-                buildGap(),
-                for (TitleModel titleModel in unitRuleModel.unitRules)
-                  Column(
-                    children: [
-                      isUpdating && titleModel == updatingTitleModel
-                          ? Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                _buildUpdateParagraph(),
-                                buildSmallGap(),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: _buildCancelButton(),
-                                    ),
-                                    buildGap(),
-                                    Expanded(
-                                      child: _buildSaveButton(
-                                        unitRuleModel,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            )
-                          : _buildParagraph(
-                              titleModel,
-                            ),
-                      buildLargeGap(),
-                    ],
-                  ),
-                isAdding
-                    ? Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          _buildUpdateParagraph(),
-                          buildSmallGap(),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: _buildCancelButton(),
-                              ),
-                              buildGap(),
-                              Expanded(
-                                child: _buildSaveButton(
-                                  unitRuleModel,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      )
-                    : _buildAddButton(),
-                buildGap(),
+                _buildListView(
+                  snapshot,
+                ),
+                if (!isBelongedTo) _buildBackdropFilter(),
+                if (!isBelongedTo) _buildColumn(),
               ],
             );
           } else {
@@ -133,6 +92,118 @@ class _UnitRuleViewState extends State<UnitRuleView> {
           }
         },
       ),
+    );
+  }
+
+  Column _buildColumn() {
+    bool authenticated = FirebaseAuthController.authenticated;
+    TextTheme textTheme = Theme.of(
+      context,
+    ).textTheme;
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Icon(
+          Icons.lock,
+          size: 96,
+        ),
+        buildGap(),
+        Text(
+          authenticated
+              ? "소속되지 않은 부대의 규정은\n열람할 수 없습니다."
+              : "부대 코드를 인증하고\n아미위키 AI를 이용해보세요!",
+          style: textTheme.titleLarge?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        if (!authenticated) buildGap(),
+        if (!authenticated)
+          FilledButton(
+            onPressed: () => Get.back(),
+            child: const Text(
+              "로그인",
+            ),
+          ),
+      ],
+    );
+  }
+
+  BackdropFilter _buildBackdropFilter() {
+    return BackdropFilter(
+      filter: ImageFilter.blur(
+        sigmaX: 4,
+        sigmaY: 4,
+      ),
+      child: Container(
+        color: Colors.black.withOpacity(
+          0,
+        ),
+      ),
+    );
+  }
+
+  ListView _buildListView(AsyncSnapshot<UnitRuleModel> snapshot) {
+    UnitRuleModel unitRuleModel = snapshot.data!;
+
+    return ListView(
+      children: [
+        buildGap(),
+        for (TitleModel titleModel in unitRuleModel.unitRules)
+          Column(
+            children: [
+              isUpdating && titleModel == updatingTitleModel
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        _buildUpdateParagraph(),
+                        buildSmallGap(),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: _buildCancelButton(),
+                            ),
+                            buildGap(),
+                            Expanded(
+                              child: _buildSaveButton(
+                                unitRuleModel,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    )
+                  : _buildParagraph(
+                      titleModel,
+                    ),
+              buildLargeGap(),
+            ],
+          ),
+        isAdding
+            ? Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  _buildUpdateParagraph(),
+                  buildSmallGap(),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: _buildCancelButton(),
+                      ),
+                      buildGap(),
+                      Expanded(
+                        child: _buildSaveButton(
+                          unitRuleModel,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              )
+            : _buildAddButton(),
+        buildGap(),
+      ],
     );
   }
 
