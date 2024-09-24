@@ -44,9 +44,10 @@
 
 ## 머리말
 
-[![armywiki Screen Shot][product-screenshot]](https://youtu.be/2rbYi0seG9Q?si=1sc6Hthl_OeOz4bz)
+[![armywiki Screen Shot][product-screenshot]](https://youtu.be/9BGlOjodUdg)
 
-머리말
+> 영상에 등장하는 모든 부대, 규정, 리뷰, 게시글 등의 정보는 실제와 무관하며  
+> 서비스에 대한 이해를 돕기 위해 허구로 창작된 것임을 밝힙니다.
 
 <p align="right">(<a href="#readme-top">처음으로</a>)</p>
 
