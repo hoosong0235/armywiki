@@ -11,7 +11,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/hoosong0235/armywiki">
-    <img src="readmeAssets/logo.png" alt="Logo" width="80" height="80">
+    <img src="readmeAssets/Logo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">아미위키</h3>
@@ -44,7 +44,7 @@
 
 ## 머리말
 
-[![armywiki Screen Shot][product-screenshot]](https://youtu.be/9BGlOjodUdg)
+[![armywiki Screen Shot][product-screenshot]](https://youtu.be/mNpyPH4tp0c?si=x_cMSUkwPhNf14Ei)
 
 > 영상에 등장하는 모든 부대, 규정, 리뷰, 게시글 등의 정보는 실제와 무관하며  
 > 서비스에 대한 이해를 돕기 위해 허구로 창작된 것임을 밝힙니다.
@@ -80,7 +80,7 @@
 
 ## 서비스 개발 과정
 
-![](readmeAssets/architecture.png)
+![](readmeAssets/Architecture.png)
 
 ### 1. 서비스 개발 과정
 
@@ -123,7 +123,7 @@ Project Link: [https://github.com/hoosong0235/armywiki](https://github.com/hooso
 [issues-url]: https://github.com/hoosong0235/armywiki/issues
 [license-shield]: https://img.shields.io/github/license/hoosong0235/armywiki.svg?style=for-the-badge
 [license-url]: https://github.com/hoosong0235/armywiki/blob/master/LICENSE.txt
-[product-screenshot]: readmeAssets/youtube.png
+[product-screenshot]: readmeAssets/Youtube.png
 [Github.js]: https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white
 [Github-url]: https://github.com/
 [Dart.js]: https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white
